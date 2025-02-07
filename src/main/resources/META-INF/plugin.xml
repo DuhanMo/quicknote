@@ -1,0 +1,57 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>io.duhanmo.quicknote</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Quicknote</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="duhanmo.dev@gmail.com" url="https://github.com/duhanmo">Duhan Mo</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    Quicknote is a simple yet effective tool designed for developers who frequently switch tasks and need to capture quick notes within IntelliJ IDEA.<br><br>
+
+    <strong>"Leave it to the notes—your brain has better things to do."</strong><br><br>
+
+    <strong>Why use Quicknote?</strong><br>
+    - <strong>Reduce STM (Short-Term Memory) Load:</strong> Writing down key information reduces cognitive strain, allowing you to focus on problem-solving instead of retaining unnecessary details.<br>
+    - <strong>Minimize Context Switching Overhead:</strong> Studies show that resuming work after an interruption takes an average of 10 minutes. By storing the current code context before stepping away (e.g., before answering a colleague’s question or leaving your desk), you can significantly cut down recovery time.<br>
+    - <strong>Capture Ideas Instantly:</strong> Great ideas often strike at unexpected moments. Whether it's a sudden solution to a bug or an innovative feature idea, Quicknote ensures you never lose a spark of inspiration.<br>
+    - <strong>Instant Access for Collaboration:</strong> Need to explain something to a teammate? Instead of scrambling to open a separate note-taking app, just bring up Quicknote and jot it down immediately.<br><br>
+
+     <strong>🚀 Quicknote Hotkeys</strong><br>
+    - **Mac:** <code>Command + Shift + P</code><br>
+    - **Windows/Linux:** <code>Ctrl + Shift + P</code><br><br>
+
+    Integrated directly into IntelliJ IDEA, Quicknote provides a lightweight, persistent, and distraction-free way to keep track of important thoughts without leaving your development environment.
+]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Quick Note"
+                    anchor="right"
+                    factoryClass="io.duhanmo.quicknote.QuickNoteToolWindow"/>
+    </extensions>
+
+    <actions>
+        <action id="io.duhanmo.quicknote.QuickNoteAction"
+                class="io.duhanmo.quicknote.QuickNoteAction"
+                text="Open Quick Note"
+                description="Opens a simple note-taking tool">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+
+            <keyboard-shortcut first-keystroke="meta shift P" keymap="$default"/>
+            <keyboard-shortcut first-keystroke="control shift P" keymap="$default"/>
+        </action>
+    </actions>
+</idea-plugin>
