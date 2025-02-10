@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "io.duhanmo"
-version = "1.2.1-SNAPSHOT"
+version = "1.2.2"
 
 repositories {
     mavenCentral()
@@ -31,7 +31,7 @@ tasks {
     }
 
     patchPluginXml {
-        sinceBuild.set("232")
+        sinceBuild.set("223")
         untilBuild.set("243.*")
     }
 

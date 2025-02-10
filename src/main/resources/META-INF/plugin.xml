@@ -25,12 +25,12 @@
     - <strong>Instant Access for Collaboration:</strong> Need to explain something to a teammate? Instead of scrambling to open a separate note-taking app, just bring up Quicknote and jot it down immediately.<br><br>
 
      <strong>🚀 Quicknote Hotkeys</strong><br>
-    - **Open Quicknote Window:**<br>
-      - **Mac:** <code>Command + Shift + P</code><br>
-      - **Windows/Linux:** <code>Ctrl + Shift + P</code><br><br>
-    - **Move Cursor to Quicknote Text Area:**<br>
-      - **Mac:** <code>Command + Shift + L</code><br>
-      - **Windows/Linux:** <code>Ctrl + Shift + L</code><br><br>
+    - Open Quicknote Window:<br>
+      - Mac: <code>Command + Shift + P</code><br>
+      - Windows/Linux: <code>Ctrl + Shift + P</code><br><br>
+    - Move Cursor to Quicknote Text Area:<br>
+      - Mac: <code>Command + Shift + L</code><br>
+      - Windows/Linux: <code>Ctrl + Shift + L</code><br><br>
 
     Integrated directly into IntelliJ IDEA, Quicknote provides a lightweight, persistent, and distraction-free way to keep track of important thoughts without leaving your development environment.
 ]]></description>
