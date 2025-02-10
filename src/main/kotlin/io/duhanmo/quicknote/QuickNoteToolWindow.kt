@@ -12,7 +12,7 @@ import javax.swing.JPanel
 
 class QuickNoteToolWindow : ToolWindowFactory {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val state = ApplicationManager.getApplication().getService(QuickNoteState::class.java)
+        val state = project.getService(QuickNoteState::class.java)
 
         // 노트 입력 필드 - 앱 재시작 시 마지막 입력 내용 유지
         val textArea = JBTextArea(state.draftContent, 10, 40)

@@ -5,7 +5,7 @@ import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 
-@Service(Service.Level.APP)
+@Service(Service.Level.PROJECT)
 @State(name = "QuickNoteState", storages = [Storage("quicknotes.xml")])
 class QuickNoteState : PersistentStateComponent<QuickNoteState> {
     private var notes: MutableList<Pair<String, String>> = mutableListOf()
