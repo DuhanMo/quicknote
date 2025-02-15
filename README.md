@@ -17,10 +17,18 @@ Capture ideas, save important code context, and reduce short-term memory overloa
 🔹 **Instant Access for Collaboration** → Jot down notes quickly for team discussions
 
 ## 🎮 Hotkeys
+### Open Quicknote Window:
 | OS      | Shortcut |
 |---------|---------|
 | **Mac** | ⌘ + ⇧ + P |
 | **Windows/Linux** | Ctrl + ⇧ + P |
+
+### Move Cursor to Quicknote Text Area:
+| OS      | Shortcut |
+|---------|---------|
+| **Mac** | ⌘ + ⇧ + L |
+| **Windows/Linux** | Ctrl + ⇧ + L |
+
 
 ## 📸 Screenshots
 ![Quicknote Screenshot](https://github.com/user-attachments/assets/6543ab51-0420-451a-984f-92a2c9252bf1)
