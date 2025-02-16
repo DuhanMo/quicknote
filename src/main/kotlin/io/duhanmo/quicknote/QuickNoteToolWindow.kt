@@ -1,6 +1,5 @@
 package io.duhanmo.quicknote
 
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
@@ -10,29 +9,40 @@ import com.intellij.ui.content.ContentFactory
 import javax.swing.BoxLayout
 import javax.swing.JPanel
 
-class QuickNoteToolWindow : ToolWindowFactory {
+class QuicknoteToolWindow : ToolWindowFactory {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val state = project.getService(QuickNoteState::class.java)
+        val state = project.getService(QuicknoteState::class.java)
+        val textArea = getJbTextArea(state)
+        autoSaveDraftContent(textArea, state)
 
-        // 노트 입력 필드 - 앱 재시작 시 마지막 입력 내용 유지
+        val panel = getJPanel(textArea)
+        addPanelToToolWindow(panel, toolWindow)
+    }
+
+    private fun getJbTextArea(state: QuicknoteState): JBTextArea {
         val textArea = JBTextArea(state.draftContent, 10, 40)
         textArea.lineWrap = true
         textArea.wrapStyleWord = true
         textArea.font = textArea.font.deriveFont(14f)
+        return textArea
+    }
 
-        // 입력할 때마다 draftContent 자동 저장
+    private fun autoSaveDraftContent(textArea: JBTextArea, state: QuicknoteState) {
         textArea.document.addDocumentListener(object : SimpleDocumentListener {
             override fun update() {
                 state.draftContent = textArea.text
             }
         })
+    }
 
-        // 패널 설정
+    private fun getJPanel(textArea: JBTextArea): JPanel {
         val panel = JPanel()
         panel.layout = BoxLayout(panel, BoxLayout.Y_AXIS)
         panel.add(JBScrollPane(textArea))
+        return panel
+    }
 
-        // 툴 윈도우에 추가
+    private fun addPanelToToolWindow(panel: JPanel, toolWindow: ToolWindow) {
         val contentFactory = ContentFactory.getInstance()
         val content = contentFactory.createContent(panel, "", false)
         toolWindow.contentManager.addContent(content)

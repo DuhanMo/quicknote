@@ -42,15 +42,15 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="Quick Note"
+        <toolWindow id="Quicknote"
                     anchor="right"
-                    factoryClass="io.duhanmo.quicknote.QuickNoteToolWindow"/>
+                    factoryClass="io.duhanmo.quicknote.QuicknoteToolWindow"/>
     </extensions>
 
     <actions>
-        <action id="io.duhanmo.quicknote.QuickNoteAction"
-                class="io.duhanmo.quicknote.QuickNoteAction"
-                text="Open Quick Note"
+        <action id="io.duhanmo.quicknote.QuicknoteAction"
+                class="io.duhanmo.quicknote.QuicknoteAction"
+                text="Open Quicknote"
                 description="Opens a simple note-taking tool">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
 
@@ -58,10 +58,10 @@
             <keyboard-shortcut first-keystroke="control shift P" keymap="$default"/>
         </action>
 
-        <action id="io.duhanmo.quicknote.MoveFocusToQuickNoteAction"
-                class="io.duhanmo.quicknote.MoveFocusToQuickNoteAction"
-                text="Move Focus to Quick Note"
-                description="Moves the cursor to the Quick Note text area">
+        <action id="io.duhanmo.quicknote.MoveFocusToQuicknoteAction"
+                class="io.duhanmo.quicknote.MoveFocusToQuicknoteAction"
+                text="Move Focus to Quicknote"
+                description="Moves the cursor to the Quicknote text area">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
             <keyboard-shortcut first-keystroke="meta shift L" keymap="$default"/>
             <keyboard-shortcut first-keystroke="control shift L" keymap="$default"/>

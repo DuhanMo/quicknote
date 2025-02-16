@@ -6,14 +6,14 @@ import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 
 @Service(Service.Level.PROJECT)
-@State(name = "QuickNoteState", storages = [Storage("quicknotes.xml")])
-class QuickNoteState : PersistentStateComponent<QuickNoteState> {
+@State(name = "QuicknoteState", storages = [Storage("quicknote.xml")])
+class QuicknoteState : PersistentStateComponent<QuicknoteState> {
     private var notes: MutableList<Pair<String, String>> = mutableListOf()
     var draftContent: String = ""
 
-    override fun getState(): QuickNoteState = this
+    override fun getState(): QuicknoteState = this
 
-    override fun loadState(state: QuickNoteState) {
+    override fun loadState(state: QuicknoteState) {
         this.notes = state.notes
         this.draftContent = state.draftContent
     }
