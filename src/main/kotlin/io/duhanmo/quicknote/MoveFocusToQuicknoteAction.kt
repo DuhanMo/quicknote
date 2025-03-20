@@ -15,15 +15,19 @@ class MoveFocusToQuicknoteAction : AnAction() {
         val project = event.project ?: return
         val toolWindow: ToolWindow = ToolWindowManager.getInstance(project).getToolWindow("Quicknote") ?: return
 
-        checkIsOpenedQuicknoteWindow(toolWindow)
+        if (isQuicknoteWindowVisible(toolWindow)) {
+            focusQuicknoteWindow(toolWindow)
+        }
     }
 
-    private fun checkIsOpenedQuicknoteWindow(toolWindow: ToolWindow) {
-        if (toolWindow.isAvailable && toolWindow.isVisible) {
-            val content = toolWindow.contentManager.selectedContent ?: return
-            val component = content.component
-            moveCursorToLastTestPosition(component)
-        }
+    private fun isQuicknoteWindowVisible(toolWindow: ToolWindow): Boolean {
+        return toolWindow.isAvailable && toolWindow.isVisible
+    }
+
+    private fun focusQuicknoteWindow(toolWindow: ToolWindow) {
+        val content = toolWindow.contentManager.selectedContent ?: return
+        val component = content.component
+        moveCursorToLastTestPosition(component)
     }
 
     private fun moveCursorToLastTestPosition(component: JComponent) {
