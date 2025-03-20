@@ -31,12 +31,18 @@ class MoveFocusToQuicknoteAction : AnAction() {
     }
 
     private fun moveCursorToLastTestPosition(component: JComponent) {
-        SwingUtilities.invokeLater {
-            val textArea = findJBTextArea(component)
-            if (textArea != null) {
-                textArea.requestFocus()
-                textArea.caretPosition = textArea.document.length
-            }
+        if (SwingUtilities.isEventDispatchThread()) {
+            findAndFocusTextArea(component)
+        } else {
+            SwingUtilities.invokeLater { findAndFocusTextArea(component) }
+        }
+    }
+
+    private fun findAndFocusTextArea(component: JComponent) {
+        val textArea = findJBTextArea(component)
+        if (textArea != null) {
+            textArea.requestFocus()
+            textArea.caretPosition = textArea.document.length
         }
     }
 
