@@ -27,10 +27,10 @@ class MoveFocusToQuicknoteAction : AnAction() {
     private fun focusQuicknoteWindow(toolWindow: ToolWindow) {
         val content = toolWindow.contentManager.selectedContent ?: return
         val component = content.component
-        moveCursorToLastTestPosition(component)
+        moveCursorToLastTextPosition(component)
     }
 
-    private fun moveCursorToLastTestPosition(component: JComponent) {
+    private fun moveCursorToLastTextPosition(component: JComponent) {
         if (SwingUtilities.isEventDispatchThread()) {
             findAndFocusTextArea(component)
         } else {
