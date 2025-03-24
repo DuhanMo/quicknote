@@ -3,17 +3,13 @@ package io.duhanmo.quicknote
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.wm.ToolWindow
-import com.intellij.openapi.wm.ToolWindowManager
-import com.intellij.ui.components.JBTextArea
-import java.awt.Component
-import java.awt.Container
 import javax.swing.JComponent
 import javax.swing.SwingUtilities
 
 class MoveFocusToQuicknoteAction : AnAction() {
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project ?: return
-        val toolWindow: ToolWindow = ToolWindowManager.getInstance(project).getToolWindow("Quicknote") ?: return
+        val toolWindow = QuicknoteUtil.getToolWindow(project) ?: return
 
         if (isQuicknoteWindowVisible(toolWindow)) {
             focusQuicknoteWindow(toolWindow)
@@ -39,25 +35,10 @@ class MoveFocusToQuicknoteAction : AnAction() {
     }
 
     private fun findAndFocusTextArea(component: JComponent) {
-        val textArea = findJBTextArea(component)
+        val textArea = QuicknoteUtil.findJBTextArea(component)
         if (textArea != null) {
             textArea.requestFocus()
             textArea.caretPosition = textArea.document.length
         }
-    }
-
-    private fun findJBTextArea(component: Component?): JBTextArea? {
-        if (component is JBTextArea) {
-            return component
-        }
-        if (component is Container) {
-            for (child in component.components) {
-                val found = findJBTextArea(child)
-                if (found != null) {
-                    return found
-                }
-            }
-        }
-        return null
     }
 }
