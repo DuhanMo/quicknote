@@ -8,7 +8,7 @@ import java.awt.Component
 import java.awt.Container
 
 object QuicknoteUtil {
-    const val TOOL_WINDOW_ID = "Quicknote"
+    private const val TOOL_WINDOW_ID = "Quicknote"
 
     fun getToolWindow(project: Project): ToolWindow? {
         return ToolWindowManager.getInstance(project).getToolWindow(TOOL_WINDOW_ID)
@@ -17,18 +17,23 @@ object QuicknoteUtil {
     fun findJBTextArea(component: Component?): JBTextArea? {
         if (component == null) return null
 
-        if (component is JBTextArea) {
-            return component
-        }
+        val queue = java.util.ArrayDeque<Component>()
+        queue.add(component)
 
-        if (component is Container) {
-            for (child in component.components) {
-                val found = findJBTextArea(child)
-                if (found != null) {
-                    return found
+        while (queue.isNotEmpty()) {
+            val current = queue.poll()
+
+            if (current is JBTextArea) {
+                return current
+            }
+
+            if (current is Container) {
+                for (child in current.components) {
+                    queue.add(child)
                 }
             }
         }
+
         return null
     }
 }
