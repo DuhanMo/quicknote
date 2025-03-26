@@ -35,6 +35,15 @@
     Integrated directly into IntelliJ IDEA, Quicknote provides a lightweight, persistent, and distraction-free way to keep track of important thoughts without leaving your development environment.
 ]]></description>
 
+    <change-notes><![CDATA[
+      <h2>1.4.0</h2>
+      <ul>
+        <li><b>Fixed memory leak</b>: Properly managing document and key listeners in the Quicknote panel. The application now releases resources when projects are closed or when the IDE is shut down, ensuring better stability during long IDE sessions.</li>
+        <li>Improved UI responsiveness</li>
+        <li>Fixed cursor positioning issues</li>
+      </ul>
+    ]]></change-notes>
+
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
