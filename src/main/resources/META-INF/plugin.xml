@@ -36,6 +36,10 @@
 ]]></description>
 
     <change-notes><![CDATA[
+      <h2>1.5.0</h2>
+      <ul>
+        <li>Added compatibility</li>
+      </ul>
       <h2>1.4.0</h2>
       <ul>
         <li><b>Fixed memory leak</b>: Properly managing document and key listeners in the Quicknote panel. The application now releases resources when projects are closed or when the IDE is shut down, ensuring better stability during long IDE sessions.</li>
