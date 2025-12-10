@@ -1,12 +1,15 @@
 package io.duhanmo.quicknote
 
 import com.intellij.openapi.Disposable
+import com.intellij.openapi.diagnostic.Logger
 import com.intellij.ui.components.JBTextArea
 import java.awt.event.KeyAdapter
 import java.awt.event.KeyEvent
 import javax.swing.event.DocumentListener
+import javax.swing.text.BadLocationException
 
 class QuicknoteTextAreaManager(private val state: QuicknoteState) : Disposable {
+    private val LOG = Logger.getInstance(QuicknoteTextAreaManager::class.java)
     private var textArea: JBTextArea? = null
     private var documentListener: DocumentListener? = null
     private var keyAdapter: KeyAdapter? = null
@@ -42,8 +45,12 @@ class QuicknoteTextAreaManager(private val state: QuicknoteState) : Disposable {
                 if (e.keyCode == KeyEvent.VK_TAB) {
                     e.consume()
                     val position = textArea.caretPosition
-                    textArea.document.insertString(position, "    ", null)
-                    textArea.caretPosition = position + 4
+                    try {
+                        textArea.document.insertString(position, "    ", null)
+                        textArea.caretPosition = position + 4
+                    } catch (ex: BadLocationException) {
+                        LOG.warn("Failed to insert spaces instead of tab", ex)
+                    }
                 }
             }
         }
