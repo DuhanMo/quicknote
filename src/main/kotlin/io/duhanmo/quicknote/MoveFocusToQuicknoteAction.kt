@@ -11,33 +11,24 @@ class MoveFocusToQuicknoteAction : AnAction() {
         val project = event.project ?: return
         val toolWindow = QuicknoteUtil.getToolWindow(project) ?: return
 
-        if (isQuicknoteWindowVisible(toolWindow)) {
+        toolWindow.activate {
             focusQuicknoteWindow(toolWindow)
         }
-    }
-
-    private fun isQuicknoteWindowVisible(toolWindow: ToolWindow): Boolean {
-        return toolWindow.isAvailable && toolWindow.isVisible
     }
 
     private fun focusQuicknoteWindow(toolWindow: ToolWindow) {
         val content = toolWindow.contentManager.selectedContent ?: return
         val component = content.component
-        moveCursorToLastTextPosition(component)
-    }
 
-    private fun moveCursorToLastTextPosition(component: JComponent) {
-        if (SwingUtilities.isEventDispatchThread()) {
+        SwingUtilities.invokeLater {
             findAndFocusTextArea(component)
-        } else {
-            SwingUtilities.invokeLater { findAndFocusTextArea(component) }
         }
     }
 
     private fun findAndFocusTextArea(component: JComponent) {
         val textArea = QuicknoteUtil.findJBTextArea(component)
         if (textArea != null) {
-            textArea.requestFocus()
+            textArea.requestFocusInWindow()
             textArea.caretPosition = textArea.document.length
         }
     }
