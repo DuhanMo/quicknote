@@ -36,6 +36,10 @@
 ]]></description>
 
     <change-notes><![CDATA[
+      <h2>2.0.1</h2>
+      <ul>
+        <li>Change icon color</li>
+      </ul>
       <h2>2.0.0</h2>
       <ul>
         <li>Add padding to panel</li>
