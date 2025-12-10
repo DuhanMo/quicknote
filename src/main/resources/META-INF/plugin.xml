@@ -36,6 +36,11 @@
 ]]></description>
 
     <change-notes><![CDATA[
+      <h2>2.0.0</h2>
+      <ul>
+        <li>Add padding to panel</li>
+        <li>Fix potential bugs</li>
+      </ul>
       <h2>1.5.0</h2>
       <ul>
         <li>Added compatibility</li>
